@@ -35,6 +35,7 @@ const getPokemonImage = async (req, res) => {
     
     res.send(imageURL)
 }
+//Quick comment
 
 const patchAPokemon = async (req, res) => {
     const {id, name, type, base} = req.params
