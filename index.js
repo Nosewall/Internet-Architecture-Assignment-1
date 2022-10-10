@@ -52,3 +52,11 @@ app.put('/api/v1/pokemon/:id', upsertAPokemon)
 app.delete('/api/v1/pokemon/:id', deleteAPokemon)
 
 app.get('/api/v1/pokemons', getSomePokemon)
+
+app.get('/', (req, res) => {
+    res.send("I wanna be the very best, like no one ever was")
+})
+
+app.use((req, res, next) => {
+    res.status(404).json({ msg: "Improper route. Check API docs plz." })
+  })
