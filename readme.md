@@ -1,56 +1,232 @@
-**Title**
+**Get All Pokemon**
 ----
-  <_Additional information about your API call. Try to use verbs that match both request type (fetching vs modifying) and plurality (one vs multiple)._>
+  <_Get Every pokemon in the database_>
 
 * **URL**
 
-  <_The URL Structure (path only, no root url)_>
+  <_/allPokemon_>
 
 * **Method:**
   
   <_The request type_>
 
-  `GET` | `POST` | `DELETE` | `PUT`
+  `GET`
   
-*  **URL Params**
-
-   <_If URL params exist, specify them in accordance with name mentioned in URL section. Separate into optional and required. Document data constraints._> 
-
-   **Required:**
- 
-   `id=[integer]`
-
-   **Optional:**
- 
-   `photo_id=[alphanumeric]`
-
-* **Data Params**
-
-  <_If making a post request, what should the body payload look like? URL Params rules apply here too._>
-
-* **Success Response:**
   
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
+  <_Success code_>
 
   * **Code:** 200 <br />
-    **Content:** `{ id : 12 }`
  
 * **Error Response:**
-
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ error : "Log in" }`
 
   OR
 
-  * **Code:** 422 UNPROCESSABLE ENTRY <br />
-    **Content:** `{ error : "Email Invalid" }`
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "Not found" }`
 
-* **Sample Call:**
 
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
+ **Get A Pokemon**
+----
+  <_Get a single pokemon_>
 
-* **Notes:**
+* **URL**
 
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._> 
+  <_/pokemon/:id_>
+
+* **Method:**
+  
+  <_The request type_>
+
+  `GET`
+  
+  
+  <_Success code_>
+
+  * **Code:** 200 <br />
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Log in" }`
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "Not found" }`
+
+**Get Some Pokemon**
+----
+  <_Get all pokemon in a range_>
+
+* **URL**
+
+  <_/pokemons_>
+
+* **Method:**
+  
+  <_The request type_>
+
+  `GET`
+  
+  
+  <_Success code_>
+
+  * **Code:** 200 <br />
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Log in" }`
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "Not found" }`
+
+**Get A pokemon image URL**
+----
+  <_Get Every pokemon in the database_>
+
+* **URL**
+
+  <_/pokemonImage/:id_>
+
+* **Method:**
+  
+  <_The request type_>
+
+  `GET`
+  
+  
+  <_Success code_>
+
+  * **Code:** 200 <br />
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Log in" }`
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "Not found" }`
+
+**Create a pokemon**
+----
+  <_Create a single pokemon following the poke-schema_>
+
+* **URL**
+
+  <_/pokemon_>
+
+* **Method:**
+  
+  <_The request type_>
+
+  `POST`
+  
+  
+  <_Success code_>
+
+  * **Code:** 200 <br />
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Log in" }`
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "Not found" }`
+
+**Patch a Pokemon**
+----
+  <_Update a single pokemon_>
+
+* **URL**
+
+  <_/pokemon/:id_>
+
+* **Method:**
+  
+  <_The request type_>
+
+  `PATCH`
+  
+  
+  <_Success code_>
+
+  * **Code:** 200 <br />
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Log in" }`
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "Not found" }`
+
+**Upsert a Pokemon**
+----
+  <_Update or insert a pokemon with a single call_>
+
+* **URL**
+
+  <_/pokemon/:id_>
+
+* **Method:**
+  
+  <_The request type_>
+
+  `PUT`
+  
+  
+  <_Success code_>
+
+  * **Code:** 200 <br />
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Log in" }`
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "Not found" }`
+
+**Delete a Pokemon**
+----
+  <_Delete a pokemon from the database_>
+
+* **URL**
+
+  <_/pokemon/:id_>
+
+* **Method:**
+  
+  <_The request type_>
+
+  `DELETE`
+  
+  
+  <_Success code_>
+
+  * **Code:** 200 <br />
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Log in" }`
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "Not found" }`
