@@ -2,21 +2,9 @@ const Pokemon = require("../models/Pokemon")
 
 const getSomePokemon = async (req, res) => {
     const {count, after} = req.query
-    pokemonToReturn = []
     countIndex = 0
-    let allPokemon = await Pokemon.find({}).sort({id: 1})
-    for (let i = 0; i < allPokemon.length; i++){
-        if (allPokemon[i].id > after){
-            pokemonToReturn.push(allPokemon[i])
-            countIndex++
-            if (countIndex >= count) {
-                console.log("FOUND ALL IN COUNT")
-                return res.status(200).send(pokemonToReturn)
-                break;
-            }
-        }
-    }
-    return res.status(200).send(pokemonToReturn)
+    let allPokemon = await Pokemon.find({}).sort({id: 1}).skip(after).limit(count)
+    return res.status(200).send(allPokemon)
 
 }
 

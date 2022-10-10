@@ -24,6 +24,7 @@ app.use(express.json())
 const database = module.exports = () => {
     try {
         mongoose.connect('mongodb+srv://root:defnet55@pokemon-cluster.80zbuts.mongodb.net/?retryWrites=true&w=majority').then(() =>{
+            mongoose.connection.useDb("pokemon_db")
             app.listen(process.env.PORT, () => {
                 console.log("Connected to Poke-base and looking for Poke-pals on port " + process.env.PORT)
             })
