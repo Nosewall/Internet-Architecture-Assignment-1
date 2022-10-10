@@ -41,13 +41,16 @@ const patchAPokemon = async (req, res) => {
     const {id, name, type, base} = req.params
     pokemonDoc = await Pokemon.find({id : id})
 
-    const pokemonToUpdate = await Pokemon.findOneAndUpdate({id: id}, {
-        ...req.body
-    }, {upsert: true}).then(() => {
-        res.status(200).json(pokemonToUpdate)
-    }).catch(error, () => {
-        res.status(404).send("Could not Patch the pokemon")
-    })
+    try{
+        const pokemonToUpdate = await Pokemon.findOneAndUpdate({id: id}, {
+            ...req.body
+        }, {upsert: true}).then(() => {
+            res.status(200).send("Successfully Patched Nabilbasur Patched")
+        })
+    } catch(error){
+        console.log(error)
+        res.send("Could not patch pokemon")
+    }
     
 }
 
@@ -55,13 +58,16 @@ const upsertAPokemon = async (req, res) => {
     const {id, name, type, base} = req.params
     pokemonDoc = await Pokemon.find({id : id})
 
-    const pokemonToUpdate = await Pokemon.findOneAndUpdate({id: id}, {
-        ...req.body
-    }, {upsert: true}).then(() => {
-        res.status(200).json(pokemonToUpdate)
-    }).catch(error, () => {
-        res.status(404).send("Could not Upsert a pokemon")
-    })
+    try{
+        const pokemonToUpdate = await Pokemon.findOneAndUpdate({id: id}, {
+            ...req.body
+        }, {upsert: true}).then(() => {
+            res.status(200).send("Successfully Upserted Nabilbasaur REX")
+        })
+    } catch(error){
+        console.log(error)
+        res.send("Could not upsert Pokemon")
+    }
 
 
 }
@@ -73,12 +79,13 @@ const deleteAPokemon = async (req, res) => {
     if(!pokemon.length){
         return res.status(404).json({error: "No such Pokemon"})
     }
-
-    await Pokemon.findOneAndDelete({id : id}).then(() =>{
-        res.status(200).send("Pokemon " + id + " successfully deleted.")
-    }).catch(error, () => {
-        res.status(404).send("Could not delete the pokemon")
-    })
+    try{
+        await Pokemon.findOneAndDelete({id : id}).then(() =>{
+            res.status(200).send("Pokemon " + id + " successfully deleted.")
+        })
+    } catch(error){
+        console.log(error)
+    }
     
 }
 
