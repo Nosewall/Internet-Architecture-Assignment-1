@@ -38,19 +38,15 @@ const getPokemonImage = async (req, res) => {
 //Quick comment
 
 const patchAPokemon = async (req, res) => {
-    const {id} = req.params
+    const {id, name, type, base} = req.params
     pokemonDoc = await Pokemon.find({id : id})
-
-    if (!pokemonDoc.length){
-        return res.status(404).json({msg: "Pokemon Not Found for update"})
-    }
 
     const pokemonToUpdate = await Pokemon.findOneAndUpdate({id: id}, {
         ...req.body
-    }).then(() => {
+    }, {upsert: true}).then(() => {
         res.status(200).json(pokemonToUpdate)
     }).catch(error, () => {
-        res.status(404).send("Could not Upsert a pokemon")
+        res.status(404).send("Could not Patch the pokemon")
     })
     
 }
@@ -81,7 +77,7 @@ const deleteAPokemon = async (req, res) => {
     await Pokemon.findOneAndDelete({id : id}).then(() =>{
         res.status(200).send("Pokemon " + id + " successfully deleted.")
     }).catch(error, () => {
-        res.status(404).send("Could not Upsert a pokemon")
+        res.status(404).send("Could not delete the pokemon")
     })
     
 }
