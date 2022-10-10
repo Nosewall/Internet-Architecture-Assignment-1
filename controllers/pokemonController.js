@@ -38,7 +38,7 @@ const getPokemonImage = async (req, res) => {
 //Quick comment
 
 const patchAPokemon = async (req, res) => {
-    const {id, name, type, base} = req.params
+    const {id} = req.params
     pokemonDoc = await Pokemon.find({id : id})
 
     if (!pokemonDoc.length){
@@ -47,9 +47,12 @@ const patchAPokemon = async (req, res) => {
 
     const pokemonToUpdate = await Pokemon.findOneAndUpdate({id: id}, {
         ...req.body
+    }).then(() => {
+        res.status(200).json(pokemonToUpdate)
+    }).catch(error, () => {
+        res.status(404).send("Could not Upsert a pokemon")
     })
-
-    res.status(200).json(pokemonToUpdate)
+    
 }
 
 const upsertAPokemon = async (req, res) => {
@@ -58,9 +61,13 @@ const upsertAPokemon = async (req, res) => {
 
     const pokemonToUpdate = await Pokemon.findOneAndUpdate({id: id}, {
         ...req.body
-    }, {upsert: true})
+    }, {upsert: true}).then(() => {
+        res.status(200).json(pokemonToUpdate)
+    }).catch(error, () => {
+        res.status(404).send("Could not Upsert a pokemon")
+    })
 
-    res.status(200).json(pokemonToUpdate)
+
 }
 
 
@@ -73,6 +80,8 @@ const deleteAPokemon = async (req, res) => {
 
     await Pokemon.findOneAndDelete({id : id}).then(() =>{
         res.status(200).send("Pokemon " + id + " successfully deleted.")
+    }).catch(error, () => {
+        res.status(404).send("Could not Upsert a pokemon")
     })
     
 }
